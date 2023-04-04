@@ -26,3 +26,5 @@ tmp/
 .vscode/launch.json
 .cmaketools.json
 ipch/
+CMakeFiles/
+CMakeCache.txt

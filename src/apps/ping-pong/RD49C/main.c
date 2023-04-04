@@ -26,6 +26,7 @@
 #include "delay.h"
 #include "timer.h"
 #include "radio.h"
+#include "uart.h"
 
 #if defined( REGION_AS923 )
 
@@ -137,6 +138,8 @@ static RadioEvents_t RadioEvents;
 extern Gpio_t Led1;
 extern Gpio_t Led2;
 
+extern Uart_t Uart2;
+
 /*!
  * \brief Function to be executed on Radio Tx Done event
  */
@@ -221,6 +224,9 @@ int main( void )
 
     while( 1 )
     {
+        UartPutChar(&Uart2,'A');
+
+        DelayMs(1001);
         switch( State )
         {
         case RX:

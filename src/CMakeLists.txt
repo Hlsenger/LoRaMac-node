@@ -23,7 +23,7 @@ cmake_minimum_required(VERSION 3.6)
 #---------------------------------------------------------------------------------------
 
 # Allow switching of target platform
-set(BOARD_LIST NAMote72 NucleoL073 NucleoL152 NucleoL476 SAMR34 SKiM880B SKiM980A SKiM881AXL B-L072Z-LRWAN1)
+set(BOARD_LIST NAMote72 NucleoL073 NucleoL152 NucleoL476 SAMR34 SKiM880B SKiM980A SKiM881AXL B-L072Z-LRWAN1 RD49C)
 set(BOARD NucleoL073 CACHE STRING "Default target platform is NucleoL073")
 set_property(CACHE BOARD PROPERTY STRINGS ${BOARD_LIST})
 
@@ -183,7 +183,32 @@ elseif(BOARD STREQUAL B-L072Z-LRWAN1)
 
     # Configure radio
     set(RADIO sx1276 CACHE INTERNAL "Radio sx1276 selected")
+
+    elseif(BOARD STREQUAL RD49C)
+    # Configure toolchain for RD48C
+    set(LINKER_SCRIPT ${CMAKE_CURRENT_SOURCE_DIR}/boards/RD49C/cmsis/arm-gcc/STM32L071CZTX_FLASH.ld)
+    include(stm32l0)
+
+    # Build platform specific board implementation
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/boards/RD49C)
+
+    # Configure radio
+    if(MBED_RADIO_SHIELD STREQUAL SX1272MB2DAS)
+        set(RADIO sx1272 CACHE INTERNAL "Radio sx1272 selected")
+    elseif(MBED_RADIO_SHIELD STREQUAL SX1276MB1LAS OR MBED_RADIO_SHIELD STREQUAL SX1276MB1MAS)
+        set(RADIO sx1276 CACHE INTERNAL "Radio sx1276 selected")
+    elseif(MBED_RADIO_SHIELD STREQUAL SX1261MBXBAS OR MBED_RADIO_SHIELD STREQUAL SX1262MBXCAS OR MBED_RADIO_SHIELD STREQUAL SX1262MBXDAS)
+        set(RADIO sx126x CACHE INTERNAL "Radio sx126x selected")
+    elseif(MBED_RADIO_SHIELD STREQUAL LR1110MB1XXS)
+        set(RADIO lr1110 CACHE INTERNAL "Radio lr1110 selected")
+    else()
+        message(STATUS "Please specify the MBED_RADIO_SHIELD!\nPossible values are: SX1272MB2DAS, SX1276MB1LAS, SX1276MB1MAS, SX1261MBXBAS, SX1262MBXCAS, SX1262MBXDAS and LR1110MB1XXS.")
+    endif()
+
 endif()
+
+
+
 
 #---------------------------------------------------------------------------------------
 # General Components
