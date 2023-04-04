@@ -72,8 +72,8 @@ extern "C"
 #define LED_2                                       PB_8
 
 // Debug pins definition.
-#define RADIO_DBG_PIN_TX                            PA_10
-#define RADIO_DBG_PIN_RX                            PA_9
+#define RADIO_DBG_PIN_TX                            NC
+#define RADIO_DBG_PIN_RX                            NC
 
 
 #define OSC_LSE_IN                                  NC
@@ -88,8 +88,25 @@ extern "C"
 #define I2C_SCL                                     NC
 #define I2C_SDA                                     NC
 
-#define UART_TX2                                     PA_3
-#define UART_RX2                                     PA_2
+
+#define UART_TX1                                    NC
+#define UART_RX1                                    NC
+
+#define UART_TX2                                    PA_3
+#define UART_RX2                                    PA_2
+
+
+
+#define GPIO_0	                                    PA_3
+#define GPIO_1	                                    PA_2
+#define GPIO_2	                                    PA_15
+#define GPIO_3	                                    PA_10
+#define GPIO_4	                                    PA_9
+#define GPIO_5	                                    PA_8
+#define GPIO_6	                                    PB_15
+#define GPIO_7	                                    PA_0
+#define GPIO_8	                                    PA_1
+#define GPIO_9	                                    PB_11
 
 #ifdef __cplusplus
 }

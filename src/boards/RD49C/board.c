@@ -58,6 +58,20 @@ Gpio_t Led1;
 Gpio_t Led2;
 Gpio_t Led3;
 
+
+//GPIOs objects
+Gpio_t Gpio0;
+Gpio_t Gpio1;
+Gpio_t Gpio2;
+Gpio_t Gpio3;
+Gpio_t Gpio4;
+Gpio_t Gpio5;
+Gpio_t Gpio6;
+Gpio_t Gpio7;
+Gpio_t Gpio8;
+Gpio_t Gpio9;
+
+
 /*
  * MCU objects
  */
@@ -128,6 +142,18 @@ void BoardInitMcu( void )
         GpioInit( &Led1, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
         GpioInit( &Led2, LED_2, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
         GpioInit( &Led2, LED_2, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
+
+        //Initialize GPIOs
+        GpioInit( &Gpio0, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+        GpioInit( &Gpio1, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+        GpioInit( &Gpio2, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+        GpioInit( &Gpio3, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+        GpioInit( &Gpio4, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+        GpioInit( &Gpio5, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+        GpioInit( &Gpio6, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+        GpioInit( &Gpio7, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+        GpioInit( &Gpio8, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
+        GpioInit( &Gpio9, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
 
         SystemClockConfig( );
 
