@@ -70,6 +70,7 @@ extern "C"
 
 #define LED_1                                       PB_5
 #define LED_2                                       PB_8
+#define LED_3                                       PB_9
 
 // Debug pins definition.
 #define RADIO_DBG_PIN_TX                            NC
@@ -92,13 +93,12 @@ extern "C"
 #define UART_TX1                                    NC
 #define UART_RX1                                    NC
 
-#define UART_TX2                                    PA_3
-#define UART_RX2                                    PA_2
+#define UART_TX                                    PA_3
+#define UART_RX                                    PA_2
 
 
 
-#define GPIO_0	                                    PA_3
-#define GPIO_1	                                    PA_2
+
 #define GPIO_2	                                    PA_15
 #define GPIO_3	                                    PA_10
 #define GPIO_4	                                    PA_9

@@ -138,23 +138,12 @@ void BoardInitMcu( void )
     {
         HAL_Init( );
 
-        // LEDs(in RD94C led logic is inverted, 0 = on, 1 = off)
+        // LEDs
         GpioInit( &Led1, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
         GpioInit( &Led2, LED_2, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
-        GpioInit( &Led2, LED_2, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
+        GpioInit( &Led3, LED_3, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
 
-        //Initialize GPIOs
-        GpioInit( &Gpio0, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-        GpioInit( &Gpio1, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-        GpioInit( &Gpio2, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-        GpioInit( &Gpio3, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-        GpioInit( &Gpio4, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-        GpioInit( &Gpio5, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-        GpioInit( &Gpio6, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-        GpioInit( &Gpio7, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-        GpioInit( &Gpio8, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-        GpioInit( &Gpio9, LED_1, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 0 );
-
+         
         SystemClockConfig( );
 
         UsbIsConnected = false;
@@ -162,7 +151,7 @@ void BoardInitMcu( void )
         FifoInit( &Uart2.FifoTx, Uart2TxBuffer, UART2_FIFO_TX_SIZE );
         FifoInit( &Uart2.FifoRx, Uart2RxBuffer, UART2_FIFO_RX_SIZE );
         // Configure your terminal for 8 Bits data (7 data bit + 1 parity bit), no parity and no flow ctrl
-        UartInit( &Uart2, UART_2, UART_TX2, UART_RX2 );
+        UartInit( &Uart2, UART_2, UART_TX, UART_RX );
         UartConfig( &Uart2, RX_TX, 921600, UART_8_BIT, UART_1_STOP_BIT, NO_PARITY, NO_FLOW_CTRL );
 
         RtcInit( );
@@ -185,10 +174,10 @@ void BoardInitMcu( void )
     SpiInit( &SX1272.Spi, SPI_1, RADIO_MOSI, RADIO_MISO, RADIO_SCLK, NC );
     SX1272IoInit( );
 
+
     if( McuInitialized == false )
     {
         McuInitialized = true;
-
         SX1272IoDbgInit( );
         SX1272IoTcxoInit( );
     }
@@ -205,20 +194,8 @@ void BoardResetMcu( void )
 void BoardDeInitMcu( void )
 {
     AdcDeInit( &Adc );
-
-#if defined( SX1261MBXBAS ) || defined( SX1262MBXCAS ) || defined( SX1262MBXDAS )
-    SpiDeInit( &SX126x.Spi );
-    SX126xIoDeInit( );
-#elif defined( LR1110MB1XXS )
-    SpiDeInit( &LR1110.spi );
-    lr1110_board_deinit_io( &LR1110 );
-#elif defined( SX1272MB2DAS )
     SpiDeInit( &SX1272.Spi );
     SX1272IoDeInit( );
-#elif defined( SX1276MB1LAS ) || defined( SX1276MB1MAS )
-    SpiDeInit( &SX1276.Spi );
-    SX1276IoDeInit( );
-#endif
 }
 
 uint32_t BoardGetRandomSeed( void )

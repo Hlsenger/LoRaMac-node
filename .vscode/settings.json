@@ -24,7 +24,7 @@
 
         // Determines the application. You can choose between:
         // LoRaMac (Default), ping-pong, rx-sensi, tx-cw.
-        "APPLICATION":"ping-pong",
+        "APPLICATION":"echo",
 
         // Select LoRaMac sub project. You can choose between:
         // periodic-uplink-lpp, fuota-test-01.
